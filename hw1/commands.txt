@@ -1,0 +1,79 @@
+1)root@5330bf9b452c:/# hdfs dfs -mkdir /folder1
+2)root@5330bf9b452c:/# hdfs dfs -mkdir /folder1/folder2
+3)Trash-удалённые файлы. Удалять с флагом -skipTrash
+4)root@5330bf9b452c:/# hdfs dfs -touchz /folder1/folder2/file1
+5)root@5330bf9b452c:/# hdfs dfs -rm /folder1/folder2/file1
+6)root@5330bf9b452c:/# hdfs dfs -rm -r /folder1
+
+1)root@5330bf9b452c:/# hdfs dfs -put tskfile /folder/
+2)root@5330bf9b452c:/# hdfs dfs -cat /folder/tskfile
+3)root@5330bf9b452c:/# hdfs dfs -cat /folder/tskfile | tail -n 3
+4)root@5330bf9b452c:/# hdfs dfs -cat /folder/tskfile | head -n 3
+5)root@5330bf9b452c:/# hdfs dfs -cp /folder/tskfile /
+
+1)root@5330bf9b452c:/# hdfs dfs -setrep -w 1 /tskfile
+Изменение числа реплик происходит не очень быстро. На мой файл
+700B ушло где-то 12 секунд. Даже появилосся такой варнинг)
+WARNING: the waiting time may be long for DECREASING the number of replications.
+После я увеличил кол-во реплик до 2-х. Заняло примерно столько же времени
+2)root@5330bf9b452c:/# hdfs fsck /tskfile -files -blocks -locations
+-----------------------------------------------------------------------------------
+Connecting to namenode via http://namenode:9870/fsck?ugi=root&files=1&blocks=1&locations=1&path=%2Ftskfile
+FSCK started by root (auth:SIMPLE) from /172.18.0.2 for path /tskfile at Sun Oct 03 15:36:12 UTC 2021
+/tskfile 779 bytes, replicated: replication=1, 1 block(s):  OK
+0. BP-513786703-172.18.0.5-1633177024483:blk_1073741841_1017 len=779 Live_repl=1  [DatanodeInfoWithStorage[172.18.0.5:9866,DS-7972209f-7a3b-46f0-bf6a-d676cadcaa0f,DISK]]
+
+
+Status: HEALTHY
+ Number of data-nodes:	3
+ Number of racks:		1
+ Total dirs:			0
+ Total symlinks:		0
+
+Replicated Blocks:
+ Total size:	779 B
+ Total files:	1
+ Total blocks (validated):	1 (avg. block size 779 B)
+ Minimally replicated blocks:	1 (100.0 %)
+ Over-replicated blocks:	0 (0.0 %)
+ Under-replicated blocks:	0 (0.0 %)
+ Mis-replicated blocks:		0 (0.0 %)
+ Default replication factor:	3
+ Average block replication:	1.0
+ Missing blocks:		0
+ Corrupt blocks:		0
+ Missing replicas:		0 (0.0 %)
+
+Erasure Coded Block Groups:
+ Total size:	0 B
+ Total files:	0
+ Total block groups (validated):	0
+ Minimally erasure-coded block groups:	0
+ Over-erasure-coded block groups:	0
+ Under-erasure-coded block groups:	0
+ Unsatisfactory placement block groups:	0
+ Average block group size:	0.0
+ Missing block groups:		0
+ Corrupt block groups:		0
+ Missing internal blocks:	0
+FSCK ended at Sun Oct 03 15:36:12 UTC 2021 in 3 milliseconds
+------------------------------------------------------------------------------
+3)root@5330bf9b452c:/# hdfs fsck -blockId blk_1073741841
+------------------------------------------------------------------------------
+Connecting to namenode via http://namenode:9870/fsck?ugi=root&blockId=blk_1073741841+&path=%2F
+FSCK started by root (auth:SIMPLE) from /172.18.0.2 at Sun Oct 03 15:52:07 UTC 2021
+
+Block Id: blk_1073741841
+Block belongs to: /tskfile
+No. of Expected Replica: 2
+No. of live Replica: 2
+No. of excess Replica: 0
+No. of stale Replica: 0
+No. of decommissioned Replica: 0
+No. of decommissioning Replica: 0
+No. of corrupted Replica: 0
+Block replica on datanode/rack: e6b89cd305b5/default-rack is HEALTHY
+Block replica on datanode/rack: d244161d4f53/default-rack is HEALTHY
+---------------------------------------------------------------------------------
+
+The filesystem under path '/tskfile' is HEALTHY
