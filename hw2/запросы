@@ -1,0 +1,41 @@
+1)Исполнителя с максимальным числом скробблов
+select 
+	artist_lastfm 
+from 
+	hue__tmp_artists inner join 
+	(
+		select 
+			max(scrobbles_lastfm) as max_sc 
+			from 
+				hue__tmp_artists
+	) filter
+on filter.max_sc=hue__tmp_artists.scrobbles_lastfm
+
+Ответ:
+	The Beatles
+2) Самый популярный тэг на ластфм
+Выбрал тэг, который встречается больше всех
+select 
+    trim(all_tags), count(all_tags) as tags_number 
+from 
+    (
+    select 
+        trim(all_tags) as all_tags 
+    from (
+        select 
+            split(tags_lastfm, ';') as tags_arr 
+        from 
+            hue__tmp_artists
+        ) a
+    lateral view 
+        explode(a.tags_arr) exploded as all_tags
+    ) kek
+where 
+    length(all_tags)>0
+group by 
+    all_tags
+sort by 
+    tags_number desc limit 1
+
+Ответ: 
+	seen live
