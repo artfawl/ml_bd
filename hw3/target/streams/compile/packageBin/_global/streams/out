@@ -1,0 +1,11 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging /home/anaxagoras/MADE/ml_bd/hw3/target/scala-2.13/hw3_2.13-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LinReg[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/anaxagoras/MADE/ml_bd/hw3/target/scala-2.13/classes/LinReg[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LinReg/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/anaxagoras/MADE/ml_bd/hw3/target/scala-2.13/classes/LinReg/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LinReg/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/anaxagoras/MADE/ml_bd/hw3/target/scala-2.13/classes/LinReg/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	LinReg/LinearRegression.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /home/anaxagoras/MADE/ml_bd/hw3/target/scala-2.13/classes/LinReg/LinearRegression.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

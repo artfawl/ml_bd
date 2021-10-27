@@ -1,0 +1,2 @@
+run /home/anaxagoras/MADE/ml_bd/hw3/files/clean_train.csv /home/anaxagoras/MADE/ml_bd/hw3/files/clean_test.csv res.txt 
+
