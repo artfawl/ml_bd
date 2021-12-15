@@ -5,6 +5,8 @@ import breeze.stats._
 import breeze.stats.distributions.Gaussian
 import java.io._
 
+
+
 class LinearRegression() {
   private var _weights: DenseMatrix[Double] = new DenseMatrix[Double](0, 0)
   private var _bias: Double = 0
